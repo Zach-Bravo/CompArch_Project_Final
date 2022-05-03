@@ -1,0 +1,12 @@
+module IMM_Mux(Imm_select, RS2_full, IMM_full, Read2);
+
+input ALUsrc;
+input [31:0] RS2_full;
+input [31:0] IMM_full;
+
+output [31:0] Read2;
+
+assign Read2= ALUsrc? IMM_full:RS2_full;
+
+
+endmodule

@@ -1,0 +1,57 @@
+module RegMux(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13,
+						 x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24,
+						 x25, x26, x27, x28, x29, x30, x31, x32, select, out);
+
+	parameter N = 32;
+
+	input [N-1:0] x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13,
+					x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24,
+					x25, x26, x27, x28, x29, x30, x31, x32; 
+	input [4:0] select;
+
+	output reg [N-1:0] out;
+//or select
+	always @(select) begin
+
+	case(select)
+
+	5'b00000: out <= x1;
+	5'b00001: out <= x2;
+	5'b00010: out <= x3;
+	5'b00011: out <= x4;
+	5'b00100: out <= x5;
+	5'b00101: out <= x6;
+	5'b00110: out <= x7;
+	5'b00111: out <= x8;
+	5'b01000: out <= x9;
+	5'b01001: out <= x10;
+	5'b01010: out <= x11;
+	5'b01011: out <= x12;
+	5'b01100: out <= x13;
+	5'b01101: out <= x14;
+	5'b01110: out <= x15;
+	5'b01111: out <= x16;
+	5'b10000: out <= x17;
+	5'b10001: out <= x18;
+	5'b10010: out <= x19;
+	5'b10011: out <= x20;
+	5'b10100: out <= x21;
+	5'b10101: out <= x22;
+	5'b10110: out <= x23;
+	5'b10111: out <= x24;
+	5'b11000: out <= x25;
+	5'b11001: out <= x26;
+	5'b11010: out <= x27;
+	5'b11011: out <= x28;
+	5'b11100: out <= x29;
+	5'b11101: out <= x30;
+	5'b11110: out <= x31;
+	5'b11111: out <= x32;
+	
+	
+	endcase
+
+
+	end
+
+endmodule 

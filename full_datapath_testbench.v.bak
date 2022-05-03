@@ -1,0 +1,92 @@
+module full_datapath_testbench;
+
+//inputs
+reg [31:0] address;
+reg clk, reset, RegWrite, MemRW, MemtoReg, PCsrc, ALUsrc;
+reg [3:0] opcode;
+//Opcode may have to be [2:0] in final project
+
+//outputs
+wire [31:0] PC_next;
+wire [31:0] finalout;
+
+//(address, clk, reset, opcode, ALUsrc, RegWrite, MemRW, MemtoReg, PCsrc, I, PC_next)
+full_datapath dut(.address(address), .clk(clk), .reset(reset), .opcode(opcode), 
+						.ALUsrc(ALUsrc), .RegWrite(RegWrite), .MemRW(MemRW), 
+						.MemtoReg(MemtoReg), .PCsrc(PCsrc), .PC_next(PC_next), .finalout(finalout));
+
+initial begin
+//Alternate Clk, Switch Off Reset From 1 to 0 and keep at 0 for rest of operations
+//address always starts at 0, take output and put into next input 
+//ALUsrc (read2_Mux) 1 = IMM, 0 = RS2
+//RegWrite (LW) 1 = ?, 0 = ?
+//MemRW (SW) 1 = Write Also, 0 = Just Read
+//MemtoReg (mem_Mux) 1 = RAMout data, 0 = result (from ALU operation)
+//PCsrc (pc_Mux) 1 = Jump (Not Using), 0 = +4
+//opcode -> read ALU, not writing here :)
+
+	reset = 1;
+	clk = 0;
+	
+	#20;
+	
+	clk = 1;
+	
+	#20;
+	
+	clk = 0;
+	reset = 0;
+	
+	#20;
+	
+	clk = 1;
+	reset = 0;
+	
+	//Test LW -> ALU opcode and other doesn't matter, check datapath block 
+	//memtoreg should be 1
+	//RegWrite should be 1
+	//All else should be 0
+	
+	address = 32'b0;
+	ALUsrc = 1;
+	RegWrite = 1;
+	MemtoReg = 1;
+	PCsrc = 0;
+	opcode = 0001;
+	MemRW = 0;
+	
+	#40;
+	
+	clk = 0;
+	address = PC_next;
+	
+	#20;
+	
+	clk = 1;
+	
+	ALUsrc = 0;
+	RegWrite = 0;
+	MemtoReg = 0;
+	PCsrc = 0;
+	
+	#20
+	
+	clk = 0;
+	
+	#20
+	
+	//Test SW
+	
+	clk = 1;
+	
+	//Test ADD
+	
+	//Test ADDI
+	
+	
+	$stop;
+	
+
+end
+
+endmodule 

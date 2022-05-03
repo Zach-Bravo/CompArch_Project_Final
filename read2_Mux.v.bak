@@ -1,0 +1,16 @@
+module read2_Mux(ALUsrc, RS2_full, IMM_full, Read2);
+
+input ALUsrc;
+input [31:0] RS2_full;
+input [31:0] IMM_full;
+
+output [31:0] Read2;
+
+if(ALUsrc == 1) begin
+assign Read2 = IMM_full;
+end
+else begin
+assign Read2 = RS2_full;
+end
+
+endmodule 

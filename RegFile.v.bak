@@ -1,0 +1,53 @@
+module register_file (I, clk, reset, rs1, rs2, rd, writeEn, out, out1);
+
+input clk, reset, writeEn;
+input [4:0] rs1, rs2, rd;
+input [31:0] I;
+output [31:0] out, out1;
+
+
+wire ou0,ou1,ou2,ou3,ou4,ou5,ou6,ou7,ou8,ou9,ou10,ou11,ou12,ou13,ou14,ou15,ou16,ou17,ou18,ou19,ou20,ou21,ou22,ou23,ou24,ou25,ou26,ou27,ou28,ou29,ou30,ou31;
+wire [31:0] x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24,x25, x26, x27, x28, x29, x30, x31, x32;
+
+//instantiating decoder
+decoder5to32 d0(writeEn, rd, ou0,ou1,ou2,ou3,ou4,ou5,ou6,ou7,ou8,ou9,ou10,ou11,ou12,ou13,ou14,ou15,ou16,ou17,ou18,ou19,ou20,ou21,ou22,ou23,ou24,ou25,ou26,ou27,ou28,ou29,ou30,ou31);
+
+//module Register(load, clk, reset, out, inReg);
+Register u1(ou0, clk, reset, x1, I);
+Register u2(ou1, clk, reset, x2, I);
+Register u3(ou2, clk, reset, x3, I);
+Register u4(ou3, clk, reset, x4, I);
+Register u5(ou4, clk, reset, x5, I);
+Register u6(ou5, clk, reset, x6, I);
+Register u7(ou6, clk, reset, x7, I);
+Register u8(ou7, clk, reset, x8, I);
+Register u9(ou8, clk, reset, x9, I);
+Register u10(ou9, clk, reset, x10, I);
+Register u11(ou10, clk, reset, x11, I);
+Register u12(ou11, clk, reset, x12, I);
+Register u13(ou12, clk, reset, x13, I);
+Register u14(ou13, clk, reset, x14, I);
+Register u15(ou14, clk, reset, x15, I);
+Register u16(ou15, clk, reset, x16, I);
+Register u17(ou16, clk, reset, x17, I);
+Register u18(ou17, clk, reset, x18, I);
+Register u19(ou18, clk, reset, x19, I);
+Register u20(ou19, clk, reset, x20, I);
+Register u21(ou20, clk, reset, x21, I);
+Register u22(ou21, clk, reset, x22, I);
+Register u23(ou22, clk, reset, x23, I);
+Register u24(ou23, clk, reset, x24, I);
+Register u25(ou24, clk, reset, x25, I);
+Register u26(ou25, clk, reset, x26, I);
+Register u27(ou26, clk, reset, x27, I);
+Register u28(ou27, clk, reset, x28, I);
+Register u29(ou28, clk, reset, x29, I);
+Register u30(ou29, clk, reset, x30, I);
+Register u31(ou30, clk, reset, x31, I);
+Register u32(ou31, clk, reset, x32, I);
+
+//instantiating Multiplexer
+Multiplexer m0(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24,x25, x26, x27, x28, x29, x30, x31, x32, rs1, out);
+Multiplexer m1(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24,x25, x26, x27, x28, x29, x30, x31, x32, rs2, out1);
+
+endmodule 

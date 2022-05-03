@@ -1,0 +1,22 @@
+module adderFour(next, clk, reset, outAddr);
+
+input clk;
+input [7:0] next;
+input reset;
+
+output reg [7:0] outAddr;
+
+always@(posedge clk) begin
+
+if(reset) begin
+
+outAddr = 8'b0;
+
+end else begin
+
+outAddr = next + 8'd4;
+
+end
+end
+
+endmodule 

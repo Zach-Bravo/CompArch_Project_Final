@@ -1,0 +1,15 @@
+module mem_Mux(ALUsrc, RS2_full, IMM_full, Read2);
+
+input ALUsrc;
+input [31:0] RS2_full;
+input [31:0] IMM_full;
+
+output [31:0] Read2;
+
+if(MemtoReg == 1) begin
+assign regRW_data = result; //Aritmetic
+end else begin
+assign regRW_data = RAMout; //SW
+end
+
+endmodule 

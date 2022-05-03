@@ -1,0 +1,16 @@
+module read2_Mux(PCsrc, potNext1, potNext2, PC_next);
+
+input PCsrc;
+input [31:0] potNext1;
+input [31:0] potNext1;
+
+output [31:0] PC_next;
+
+if(PCsrc == 1) begin
+assign PC_next = potNext1; //+4
+end
+else begin
+assign PC_next = potNext2; //Jump
+end
+
+endmodule 
